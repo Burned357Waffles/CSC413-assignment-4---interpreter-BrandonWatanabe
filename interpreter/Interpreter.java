@@ -10,6 +10,7 @@ public class Interpreter {
     try {
       CodeTable.init();
       byteCodeLoader = new ByteCodeLoader(codeFile);
+
     } catch (IOException e) {
       System.out.println("**** " + e);
     }

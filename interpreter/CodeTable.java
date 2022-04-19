@@ -1,6 +1,9 @@
 package interpreter;
 
+import java.util.HashMap;
+
 public class CodeTable {
+  private static HashMap<String, String> byteCodeMap = new HashMap<>();
 
   public static void init () {
 
