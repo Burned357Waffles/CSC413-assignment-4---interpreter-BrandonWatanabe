@@ -2,7 +2,7 @@ package interpreter.bytecode;
 
 import interpreter.VirtualMachine;
 
-public class GotoCode extends ByteCode
+public class GoToCode extends ByteCode
 {
     private String byte_code;
     private String argument;

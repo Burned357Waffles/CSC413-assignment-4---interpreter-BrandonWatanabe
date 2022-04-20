@@ -1,11 +1,13 @@
 package interpreter;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.io.File;
 import java.util.Scanner;
 
 public class CodeTable {
   private static HashMap<String, String> byteCodeMap = new HashMap<>(); // <ByteCode String, ByteCode Class>
-  private static String byteCodeFile = "bytecodes.txt";
+  private static String byteCodeFile = "interpreter/bytecodes.txt";
 
   public static void init()
   {
@@ -14,14 +16,22 @@ public class CodeTable {
 
   private static void populateByteCodeMap()
   {
-    Scanner inputFile = new Scanner(byteCodeFile);
-    while (inputFile.hasNext())
+    try
     {
-      String nextLine = inputFile.nextLine();
-      String[] readLine = nextLine.split(", ");
-      byteCodeMap.put(readLine[0], readLine[1]);
+      File codeFile = new File(byteCodeFile);
+      Scanner inputFile = inputFile = new Scanner(codeFile);
+      while (inputFile.hasNext())
+      {
+        String nextLine = inputFile.nextLine();
+        String[] readLine = nextLine.split(", ");
+        byteCodeMap.put(readLine[0], readLine[1]);
+      }
+      inputFile.close();
     }
-    inputFile.close();
+    catch (FileNotFoundException e)
+    {
+      e.printStackTrace();
+    }
   }
 
   public static String get(String code) { return byteCodeMap.get(code); }

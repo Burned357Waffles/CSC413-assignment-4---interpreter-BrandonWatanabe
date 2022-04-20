@@ -16,7 +16,9 @@ public class Interpreter {
   }
 
   void run() {
-    Program program = byteCodeLoader.loadCodes();
+    Program program = null;
+    try { program = byteCodeLoader.loadCodes(); }
+    catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) { e.printStackTrace(); }
     VirtualMachine vm = new VirtualMachine(program);
     vm.executeProgram();
   }
