@@ -6,6 +6,8 @@ public class ReadCode extends ByteCode
 {
     private String byte_code;
 
+    public ReadCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {

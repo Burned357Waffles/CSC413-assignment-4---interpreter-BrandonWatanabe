@@ -8,6 +8,8 @@ public class ReturnCode extends ByteCode
     private String argument;
     private int args_length;
 
+    public ReturnCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {

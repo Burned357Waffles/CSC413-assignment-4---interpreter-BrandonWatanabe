@@ -6,6 +6,8 @@ public class WriteCode extends ByteCode
 {
     private String byte_code;
 
+    public WriteCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {

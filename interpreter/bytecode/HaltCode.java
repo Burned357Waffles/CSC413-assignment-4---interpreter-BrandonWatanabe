@@ -6,6 +6,8 @@ public class HaltCode extends ByteCode
 {
     private String byte_code;
 
+    public HaltCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {

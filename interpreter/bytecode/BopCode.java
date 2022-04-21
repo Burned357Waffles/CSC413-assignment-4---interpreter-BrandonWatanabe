@@ -7,6 +7,8 @@ public class BopCode extends ByteCode
     private String byte_code;
     private String argument;
 
+    public BopCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {

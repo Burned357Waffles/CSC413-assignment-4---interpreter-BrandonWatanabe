@@ -7,6 +7,8 @@ public class GoToCode extends ByteCode
     private String byte_code;
     private String argument;
 
+    public GoToCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {

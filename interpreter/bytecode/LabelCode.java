@@ -8,6 +8,8 @@ public class LabelCode extends ByteCode
     private String argument;
     private int target;
 
+    public LabelCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {

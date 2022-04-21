@@ -9,6 +9,8 @@ public class StoreCode extends ByteCode
     private Integer value_to_store;
     private String id;
 
+    public StoreCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {

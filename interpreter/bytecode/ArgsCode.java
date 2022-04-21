@@ -8,6 +8,8 @@ public class ArgsCode extends ByteCode
     private String argument;
     private int target;
 
+    public ArgsCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {

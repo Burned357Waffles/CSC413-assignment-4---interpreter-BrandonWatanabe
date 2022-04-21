@@ -8,6 +8,8 @@ public class PopCode extends ByteCode
     private String argument;
     private Integer args_count;
 
+    public PopCode(){}
+
     @Override
     public void init(String[] input_args)
     {

@@ -9,6 +9,8 @@ public class LitCode extends ByteCode
     private String id;
     private int args_count;
 
+    public LitCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {

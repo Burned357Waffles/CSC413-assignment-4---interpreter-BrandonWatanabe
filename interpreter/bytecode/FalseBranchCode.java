@@ -7,6 +7,8 @@ public class FalseBranchCode extends ByteCode
     private String byte_code;
     private String argument;
 
+    public FalseBranchCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {

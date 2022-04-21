@@ -9,6 +9,8 @@ public class LoadCode extends ByteCode
     private Integer value_to_load;
     private String id;
 
+    public LoadCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {

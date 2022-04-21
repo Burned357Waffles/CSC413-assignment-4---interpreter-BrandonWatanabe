@@ -7,6 +7,8 @@ public class CallCode extends ByteCode
     private String byte_code;
     private String argument;
 
+    public CallCode(){}
+
     @Override
     public void init(String[] inputArgs)
     {
