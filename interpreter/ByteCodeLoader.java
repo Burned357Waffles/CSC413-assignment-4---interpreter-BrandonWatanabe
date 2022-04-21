@@ -18,7 +18,7 @@ public class ByteCodeLoader {
     this.byteCodeFile = byteCodeFile;
   }
 
-  public Program loadCodes() throws ClassNotFoundException, InstantiationException, IllegalAccessException
+  public Program loadCodes()
   {
     try
     {
@@ -43,15 +43,23 @@ public class ByteCodeLoader {
     }
     catch (FileNotFoundException e)
     {
-      System.out.println("File" + byteCodeFile + "not found");
+      System.err.println("File" + byteCodeFile + "not found");
     } catch (InvocationTargetException e)
     {
-      e.printStackTrace();
+      System.err.println("Invocation Target Exception");
     } catch (NoSuchMethodException e)
     {
       System.err.println("Method does not exist");
     }
-
+    catch (ClassNotFoundException e){
+      System.err.println("Class does not exist");
+    }
+    catch (InstantiationException e){
+      System.err.println("Instantiation exception");
+    }
+    catch (IllegalAccessException e){
+      System.err.println("Illegal Access");
+    }
     Program program = new Program();
     program.addCodes(codeHashMap);
     return program;
