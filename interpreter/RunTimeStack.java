@@ -6,11 +6,12 @@ import java.util.Vector;
 public class RunTimeStack {
 
   private Stack<Integer> framePointers;
-  // This may not be the right parameterized type!!
-  private Vector<Object> runStack;
+  private Vector<Integer> runStack;
 
   public RunTimeStack() {
-
+    framePointers = new Stack<>();
+    runStack = new Vector<>();
+    framePointers.push(0);
   }
 
   /**

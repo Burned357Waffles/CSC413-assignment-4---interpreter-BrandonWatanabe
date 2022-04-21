@@ -29,7 +29,7 @@ public class ByteCodeLoader {
       {
         String nextLine = inputFile.nextLine();
         String[] readLine = nextLine.split("\\s+");
-        String[] argsArray = new String[readLine.length-1];
+        String[] argsArray = new String[readLine.length];
         for (int i = 1; i < readLine.length; i++)
         {
           argsArray[i] = readLine[i];

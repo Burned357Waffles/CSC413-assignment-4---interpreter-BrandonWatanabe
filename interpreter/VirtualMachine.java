@@ -30,8 +30,7 @@ public class VirtualMachine {
 
   private int pc;
   private RunTimeStack runTimeStack;
-  // This may not be the right parameterized type!!
-  private Stack<Object> returnAddresses;
+  private Stack<Integer> returnAddresses;
   private boolean isRunning;
   private Program program;
 

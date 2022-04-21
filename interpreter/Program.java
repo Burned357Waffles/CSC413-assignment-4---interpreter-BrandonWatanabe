@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Program {
-  public ArrayList<ByteCode> byteCodeList;
+  public ArrayList<ByteCode> byteCodeList = new ArrayList<>();
 
   public void addCodes(HashMap<ByteCode,String[]> inputMap)
   {
     int line_num = 0;
       for (ByteCode key : inputMap.keySet()){
         line_num++;
+        byteCodeList.add(key);
       if(key.getClass().getName().equals("interpreter.bytecode.LabelCode")) key.setTarget(line_num);
       key.init(inputMap.get(key));
     }
