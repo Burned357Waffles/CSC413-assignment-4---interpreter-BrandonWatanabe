@@ -5,8 +5,7 @@ import interpreter.VirtualMachine;
 public class PopCode extends ByteCode
 {
     private String byte_code;
-    private String argument;
-    private Integer args_count;
+    private int argument;
 
     public PopCode(){}
 
@@ -14,8 +13,7 @@ public class PopCode extends ByteCode
     public void init(String[] input_args)
     {
         this.byte_code = input_args[0];
-        this.argument = input_args[1];
-        this.args_count = Integer.parseInt(argument);
+        this.argument = Integer.parseInt(input_args[1]);
     }
 
     @Override
@@ -31,7 +29,7 @@ public class PopCode extends ByteCode
     @Override
     public void execute(VirtualMachine vm)
     {
-
+        vm.popN(argument);
     }
 
 

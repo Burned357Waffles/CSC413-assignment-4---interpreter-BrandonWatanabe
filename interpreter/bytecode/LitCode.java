@@ -6,7 +6,7 @@ public class LitCode extends ByteCode
 {
     private String byte_code;
     private Integer argument;
-    private String id;
+    private String id = "";
     private int args_count;
 
     public LitCode(){}
@@ -21,10 +21,7 @@ public class LitCode extends ByteCode
     }
 
     @Override
-    public String getString(){
-        if (args_count == 3) return byte_code + " " + argument + " " + id;
-        return byte_code + " " + argument;
-    }
+    public String getString(){ return byte_code + " " + argument + " " + id; }
 
     @Override
     public String getByteCode(){
@@ -34,6 +31,6 @@ public class LitCode extends ByteCode
     @Override
     public void execute(VirtualMachine vm)
     {
-
+        vm.push(argument);
     }
 }

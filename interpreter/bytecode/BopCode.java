@@ -29,6 +29,6 @@ public class BopCode extends ByteCode
     @Override
     public void execute(VirtualMachine vm)
     {
-
+        vm.bop(argument);
     }
 }

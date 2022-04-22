@@ -27,13 +27,12 @@ public class LabelCode extends ByteCode
         return byte_code;
     }
 
-    public void setTarget(int target){ this.target = target; }
+    public String getArgument(){ return argument;}
 
-    public String getArgument(){ return argument; }
+    public void setTarget(int target){ this.target = target; }
 
     @Override
     public void execute(VirtualMachine vm)
     {
-
     }
 }

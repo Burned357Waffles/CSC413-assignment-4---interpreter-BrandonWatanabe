@@ -8,10 +8,11 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 import java.util.HashMap;
-
+import java.util.ArrayList;
 public class ByteCodeLoader {
   private String byteCodeFile;
-  public static HashMap<ByteCode, String[]> codeHashMap = new HashMap<>();
+  public static HashMap<Integer, ByteCode> codeHashMap = new HashMap<>();
+  public static ArrayList<String[]> argsList = new ArrayList<>();
 
   public ByteCodeLoader(String byteCodeFile) throws IOException
   {
@@ -22,6 +23,7 @@ public class ByteCodeLoader {
   {
     try
     {
+      int counter = 0;
       File codeFile = new File(byteCodeFile);
       Scanner inputFile =  new Scanner(codeFile);
 
@@ -29,22 +31,20 @@ public class ByteCodeLoader {
       {
         String nextLine = inputFile.nextLine();
         String[] readLine = nextLine.split("\\s+");
-        String[] argsArray = new String[readLine.length];
-        for (int i = 1; i < readLine.length; i++)
-        {
-          argsArray[i] = readLine[i];
-        }
 
         String code_class = CodeTable.get(readLine[0]);
         ByteCode bytecode = (ByteCode) (Class.forName("interpreter.bytecode." + code_class)
                 .getDeclaredConstructor().newInstance());
-        codeHashMap.put(bytecode, argsArray);
+        argsList.add(readLine);
+        codeHashMap.put(counter, bytecode);
+        counter++;
       }
     }
     catch (FileNotFoundException e)
     {
       System.err.println("File" + byteCodeFile + "not found");
-    } catch (InvocationTargetException e)
+    }
+    catch (InvocationTargetException e)
     {
       System.err.println("Invocation Target Exception");
     } catch (NoSuchMethodException e)
@@ -61,7 +61,7 @@ public class ByteCodeLoader {
       System.err.println("Illegal Access");
     }
     Program program = new Program();
-    program.addCodes(codeHashMap);
+    program.addCodes(codeHashMap, argsList);
     return program;
   }
 }

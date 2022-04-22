@@ -5,9 +5,8 @@ import interpreter.VirtualMachine;
 public class LoadCode extends ByteCode
 {
     private String byte_code;
-    private String argument;
-    private Integer value_to_load;
-    private String id;
+    private int argument;
+    private String id = "";
 
     public LoadCode(){}
 
@@ -15,9 +14,8 @@ public class LoadCode extends ByteCode
     public void init(String[] inputArgs)
     {
         this.byte_code = inputArgs[0];
-        this.argument = inputArgs[1];
-        this.value_to_load = Integer.parseInt(argument);
-        this.id = inputArgs[2];
+        this.argument = Integer.parseInt(inputArgs[1]);
+        if (inputArgs.length == 3) this.id = inputArgs[2];
     }
 
     @Override
@@ -32,6 +30,6 @@ public class LoadCode extends ByteCode
     @Override
     public void execute(VirtualMachine vm)
     {
-
+        vm.load(argument);
     }
 }

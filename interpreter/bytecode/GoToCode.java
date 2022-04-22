@@ -6,6 +6,7 @@ public class GoToCode extends ByteCode
 {
     private String byte_code;
     private String argument;
+    private int target;
 
     public GoToCode(){}
 
@@ -26,9 +27,13 @@ public class GoToCode extends ByteCode
         return byte_code;
     }
 
+    public String getArgument(){ return argument;}
+
+    public void setTarget(int target){ this.target = target; }
+
     @Override
     public void execute(VirtualMachine vm)
     {
-
+        vm.setPC(target);
     }
 }

@@ -20,6 +20,7 @@ public class HaltCode extends ByteCode
         return byte_code;
     }
 
+
     @Override
     public String getByteCode()
     {
@@ -29,6 +30,6 @@ public class HaltCode extends ByteCode
     @Override
     public void execute(VirtualMachine vm)
     {
-
+        vm.haltProgram();
     }
 }

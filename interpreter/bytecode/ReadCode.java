@@ -1,6 +1,7 @@
 package interpreter.bytecode;
 
 import interpreter.VirtualMachine;
+import java.util.Scanner;
 
 public class ReadCode extends ByteCode
 {
@@ -29,6 +30,8 @@ public class ReadCode extends ByteCode
     @Override
     public void execute(VirtualMachine vm)
     {
-
+        System.out.println("Please enter an integer: ");
+        Scanner readLine = new Scanner(System.in);
+        vm.push(readLine.nextInt());
     }
 }

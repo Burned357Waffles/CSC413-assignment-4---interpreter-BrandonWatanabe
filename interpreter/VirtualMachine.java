@@ -33,6 +33,7 @@ public class VirtualMachine {
   private Stack<Integer> returnAddresses;
   private boolean isRunning;
   private Program program;
+  public boolean dumpState = false;
 
   public VirtualMachine(Program program) {
     this.program = program;
@@ -42,6 +43,7 @@ public class VirtualMachine {
     pc = 0;
     runTimeStack = new RunTimeStack();
     returnAddresses = new Stack<>();
+    returnAddresses.push(0);
     isRunning = true;
 
     while (isRunning) {
@@ -49,7 +51,22 @@ public class VirtualMachine {
       code.execute(this);
       // runStack.dump(); // check that the operation is correct
       pc++;
+      if (pc == program.byteCodeList.size()) isRunning = false;
     }
   }
+  public void newFrameAt(int n) {runTimeStack.newFrameAt(n);}
+  public void bop(String op) { runTimeStack.bop(op); }
+  public int getReturn() {return returnAddresses.pop();}
+  public void haltProgram() {isRunning = false;}
+  public void load(int n) {runTimeStack.load(n);}
+  public void store(int n) {runTimeStack.store(n);}
+  public void popN(int n) {runTimeStack.popN(n);}
+  public int popRunStack() { return runTimeStack.pop();}
+  public void popFrame() {runTimeStack.popFrame();}
+  public void push(int n) {runTimeStack.push(n);}
+  public void storeCurrentPC() {returnAddresses.add(pc);}
+  public void setDumpState(boolean b) {this.dumpState = b;}
+  public void setPC(int n) {pc = n;}
+  public void write() {runTimeStack.write();}
 
 }

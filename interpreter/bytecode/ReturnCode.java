@@ -29,9 +29,13 @@ public class ReturnCode extends ByteCode
         return byte_code;
     }
 
+    public String getArgument(){ return argument;}
+
     @Override
     public void execute(VirtualMachine vm)
     {
-
+        int target = vm.getReturn();
+        vm.popFrame();
+        vm.setPC(target);
     }
 }
