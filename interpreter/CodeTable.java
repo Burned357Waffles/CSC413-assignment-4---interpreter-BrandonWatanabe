@@ -30,7 +30,7 @@ public class CodeTable {
     }
     catch (FileNotFoundException e)
     {
-      e.printStackTrace();
+      System.out.println("File " + byteCodeFile + " not found." );
     }
   }
 
