@@ -16,10 +16,6 @@ public class RunTimeStack
     framePointers.push(0);
   }
 
-  /**
-   * The purpose of this function is to dump the RunTimeStack for the
-   * purpose of debugging.
-   */
   public String dump()
   {
     Vector<Integer>[] dumpVector = new Vector[framePointers.size()];
@@ -42,17 +38,11 @@ public class RunTimeStack
     return dumpString;
   }
 
-  /**
-   * Returns the top item on the runtime stack.
-   */
   public int peek()
   {
     return runStack.lastElement();
   }
 
-  /**
-   * Pops the top item from the runtime stack, returning the item.
-   */
   public int pop()
   {
     int valuePopped = runStack.lastElement();
@@ -65,30 +55,18 @@ public class RunTimeStack
       this.pop();
     }
   }
-  /**
-   * Push an item on to the runtime stack, returning the item that was just
-   * pushed.
-   */
+
   public int push(int item)
   {
     runStack.add(item);
     return item;
   }
 
-  /**
-   * Start a new frame, where the parameter offset is the number of slots
-   * down from the top of the RunTimeStack for starting the new frame.
-   */
   public void newFrameAt(int offset)
   {
     framePointers.push(runStack.size() - offset);
   }
 
-  /**
-   * We pop the top frame when we return from a function; before popping, the
-   * functions’ return value is at the top of the stack so we’ll save the value,
-   * pop the top frame, and then push the return value.
-   */
   public void popFrame()
   {
     int top = this.pop();
@@ -100,9 +78,6 @@ public class RunTimeStack
     this.push(top);
   }
 
-  /**
-   * Used to store into variables.
-   */
   public void store(int offset)
   {
     int top = pop();
@@ -111,9 +86,6 @@ public class RunTimeStack
     runStack.removeElementAt(framePointers.peek() + offset + 1);
   }
 
-  /**
-   * Used to load variables onto the stack.
-   */
   public void load(int offset)
   {
     if (framePointers.isEmpty())

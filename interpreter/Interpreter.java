@@ -1,7 +1,6 @@
 package interpreter;
 
 import java.io.*;
-import java.util.HashMap;
 
 public class Interpreter {
 

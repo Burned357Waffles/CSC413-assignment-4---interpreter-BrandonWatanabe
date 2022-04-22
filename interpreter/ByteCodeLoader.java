@@ -1,7 +1,6 @@
 package interpreter;
 
 import interpreter.bytecode.ByteCode;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -9,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.ArrayList;
+
 public class ByteCodeLoader {
   private String byteCodeFile;
   public static HashMap<Integer, ByteCode> codeHashMap = new HashMap<>();
