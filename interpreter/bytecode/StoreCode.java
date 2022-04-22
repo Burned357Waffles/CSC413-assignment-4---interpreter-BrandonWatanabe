@@ -28,6 +28,8 @@ public class StoreCode extends ByteCode
         return byte_code;
     }
 
+    public String getId() {return id;}
+
     @Override
     public void execute(VirtualMachine vm)
     {

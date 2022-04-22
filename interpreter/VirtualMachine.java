@@ -49,11 +49,49 @@ public class VirtualMachine {
     while (isRunning) {
       ByteCode code = program.getCode(pc);
       code.execute(this);
-      // runStack.dump(); // check that the operation is correct
+      if (dumpState) handleDump(code);
       pc++;
       if (pc == program.byteCodeList.size()) isRunning = false;
     }
   }
+
+  public void handleDump(ByteCode code){
+    if(!code.getByteCode().equals("DUMP"))
+    {
+      System.out.printf("%-25s", code.getString());
+      if (code.getByteCode().equals("LIT")){
+        if(code.isId()) {
+          String output =  "int " + code.getId();
+          System.out.printf("%-26s", output);
+        }
+      }
+      else if (code.getByteCode().equals("LOAD")){
+        if(code.isId()) {
+          String output =  "<load " + code.getId() + ">";
+          System.out.printf("%-26s", output);
+        }
+      }
+      else if (code.getByteCode().equals("STORE")){
+        String output =  code.getId() + " = " + runTimeStack.peek();
+        System.out.printf("%-26s", output);
+      }
+      else if (code.getByteCode().equals("RETURN")){
+        if(code.isId()) {
+          String output =  code.getId() + " = " + runTimeStack.peek();
+          System.out.printf("%-26s", output);
+        }
+      }
+      else if (code.getByteCode().equals("ARGS")){
+        ByteCode callCode = program.getCode(pc + 1);
+        String output =  callCode.getId() + "(" + code.getArgument() + "," + callCode.getNumber() + ")";
+        System.out.printf("%-26s", output);
+        }
+
+      System.out.println();
+      System.out.println(runTimeStack.dump());
+      }
+  }
+
   public void newFrameAt(int n) {runTimeStack.newFrameAt(n);}
   public void bop(String op) { runTimeStack.bop(op); }
   public int getReturn() {return returnAddresses.pop();}
@@ -64,6 +102,7 @@ public class VirtualMachine {
   public int popRunStack() { return runTimeStack.pop();}
   public void popFrame() {runTimeStack.popFrame();}
   public void push(int n) {runTimeStack.push(n);}
+  public int peek() {return runTimeStack.peek();}
   public void storeCurrentPC() {returnAddresses.add(pc);}
   public void setDumpState(boolean b) {this.dumpState = b;}
   public void setPC(int n) {pc = n;}

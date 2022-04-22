@@ -20,9 +20,26 @@ public class RunTimeStack
    * The purpose of this function is to dump the RunTimeStack for the
    * purpose of debugging.
    */
-  public void dump()
+  public String dump()
   {
+    Vector<Integer>[] dumpVector = new Vector[framePointers.size()];
+    Vector<Integer> runStackCopy = new Vector<>(runStack);
+    String dumpString = "";
 
+    for( int i = framePointers.size()-1; i >= 0 ; i-- ){
+      dumpVector[i] = new Vector<>();
+      int startIndex = framePointers.get(i);
+      int stackSize = runStackCopy.size();
+      for (int j=startIndex; j < stackSize; j++) {
+        dumpVector[i].add(runStackCopy.remove(startIndex));
+      }
+    }
+    for ( int i=0; i<framePointers.size(); i++){
+      dumpString = dumpString + dumpVector[i].toString();
+      System.out.print(dumpVector[i].toString());
+    }
+
+    return dumpString;
   }
 
   /**

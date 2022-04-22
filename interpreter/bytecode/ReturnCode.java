@@ -15,7 +15,11 @@ public class ReturnCode extends ByteCode
     {
         this.args_length = inputArgs.length;
         this.byte_code = inputArgs[0];
-        if (args_length == 2) this.argument = inputArgs[1];
+        if (args_length == 2)
+        {
+            this.hasId = true;
+            this.argument = inputArgs[1];
+        }
     }
 
     @Override
@@ -30,6 +34,14 @@ public class ReturnCode extends ByteCode
     }
 
     public String getArgument(){ return argument;}
+
+    public boolean isId() { return hasId; }
+
+    public String getId()
+    {
+        String[] stringSeparated = argument.split("<");
+        return stringSeparated[0];
+    }
 
     @Override
     public void execute(VirtualMachine vm)

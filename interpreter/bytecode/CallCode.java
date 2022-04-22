@@ -29,6 +29,14 @@ public class CallCode extends ByteCode
 
     public String getArgument(){ return argument;}
 
+    public String getId()
+    {
+        String[] stringSeparated = argument.split("<");
+        return stringSeparated[0];
+    }
+
+    public String getNumber() { return argument.replaceAll("[^0-9]", ""); }
+
     public void setTarget(int target){ this.target = target; }
 
     @Override
